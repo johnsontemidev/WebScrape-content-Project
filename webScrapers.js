@@ -5,6 +5,7 @@ async function scrapeProduct(url) {
     const page = await browser.newPage();
     await page.goto(url);
 
+    //wait for xpath
     const [el] = await page.$x('/html/body/div[1]/div[2]/div[1]/div/div/div/div/div/div[2]/div[2]/div[1]/div[1]/span');
     const txt = await el.getProperty('textContent');
     const price = await txt.jsonValue();
@@ -26,6 +27,7 @@ async function scrapeProduct(url) {
     const nextOfferAvail = await txt5.jsonValue();
 
 
+    //console.log(el)
     console.log({price, seller, avail, nextOfferPrice, nextOfferAvail});
 
     browser.close();
